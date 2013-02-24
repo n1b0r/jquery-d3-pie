@@ -218,25 +218,25 @@
             if (settings.data_url != '') {
 
                 // get first data, and paint it
-                $.get(settings.data_url, function(data) {
+                $.getJSON(settings.data_url, function(data) {
                     settings.data=data
                     draw_pie(pie_layout(data))
-                }, "json")
+                })
 
                 function update_data() {
-                  $.get(settings.data_url, function(data) {
+                  $.getJSON(settings.data_url, function(data) {
                         settings.data=data
                         update_pie(pie_layout(data))
-                  }, "json")
+                  })
 
                 }
 
                 // setup refresh interval if needed
                 if (settings.refresh_interval != 0) {
                     var timer=setInterval(function () {
-                            $.get(settings.data_url, function(data) {
+                            $.getJSON(settings.data_url, function(data) {
                                 update_pie(pie_layout(data))
-                            }, "json")
+                            })
                         },
                         settings.refresh_interval
                     );
